@@ -2,25 +2,30 @@ require "bundler/setup"
 Bundler.require(:default, :development) 
 require_relative "Headers.rb"
 
-game = Nervious.new
+button1 = ButtonPlayer.new 22
+button2 =  ButtonPlayer.new 23
 
-button1 = ButtonPlayer.new 7
-button2 =  ButtonPlayer.new 0
+ledsLifes1 = LedsLifes.new [17,18,4]
+ledsLifes2 = LedsLifes.new [19,13,6]
 
-ledsLifes1 = LedsLifes.new [3]
-ledsLifes2 = LedsLifes.new [4]
+buttonReset = ButtonReset.new 27
+ledsNervious = LedsNervious.new [26], [20]
+
+game = Nervious.new ledsNervious
 
 player1 = Player.new button1, ledsLifes1, "Player 1", game
 player2 = Player.new button2, ledsLifes2, "Player 2", game
 
-buttonReset = ButtonReset.new 5
-ledsNervious = LedsNervious.new [2]
-
 buttonReset.register_observer game
-ledsNervious.register_observer game
+button1.register_observer game
+button2.register_observer game
+ledsLifes1.register_observer game
+ledsLifes2.register_observer game
 
+buttonReset.run_thread
 button1.run_thread
 button2.run_thread
+
 game.run_thread.join
 
 puts "the game finished"

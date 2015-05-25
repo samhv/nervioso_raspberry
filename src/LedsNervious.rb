@@ -1,6 +1,7 @@
 class LedsNervious
 
 	def initialize pin_leds_win, pin_leds_lose
+		super()
 		@leds_win = pin_leds_win.map do |pin_led| 
 						pin_led = Led.new(pin_led)
 					end

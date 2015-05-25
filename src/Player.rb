@@ -10,7 +10,7 @@ class Player
 	def play game
 		game.register_observer @buttonPlayer
 		game.register_observer @ledsLifes
-		game.add_player name, @buttonPlayer, @ledsLifes
+		game.add_player @name, @buttonPlayer, @ledsLifes
 	end
 
 end

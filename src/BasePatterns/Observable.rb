@@ -14,7 +14,7 @@ module Observable
 
 	def unregister_observer observer
 		@observers.delete observer
-	end  
+	end
 
 	def notify_observers
 		raise "module Observer, method notify_observers, override me pls"
